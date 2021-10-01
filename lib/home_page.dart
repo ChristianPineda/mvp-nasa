@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nasacards/api/service.dart';
+import 'package:nasacards/cards.dart';
 
 import 'api/models.dart';
 
@@ -23,7 +24,7 @@ class _HomePageState extends State<HomePage> {
         ),
         body: Column(
           children: [
-            Text('Hola'),
+            Text('Asteroides'),
             Expanded(
               child: FutureBuilder(
                 future: service.getAsteroids(startDate, endDate),
@@ -39,13 +40,14 @@ class _HomePageState extends State<HomePage> {
                     itemCount: data.length,
                     itemBuilder: (context, index) {
                       var currentObject = data[index];
-                      return Text(currentObject.name);
+                      return Cards(asteroid: currentObject);
                     },
                   );
                 },
               ),
             ),
           ],
-        ));
+        )
+    );
   }
 }
